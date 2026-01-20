@@ -1,65 +1,99 @@
-import Image from "next/image";
+'use client';
+import SideBar from '@/app/ui/sideBar';
+import WebcamComponent from '@/app/ui/webcam';
+import Card from '@/app/ui/card';
+import Switch from '@/app/ui/switch';
+import Modal from '@/app/ui/modal';
+import { useState } from 'react';
+import Image from 'next/image';
+import { StaticImport } from 'next/dist/shared/lib/get-img-props';
+import { Button } from '@/app/ui/button';
 
 export default function Home() {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    const [capturedImage, setCapturedImage] = useState<string | StaticImport>(
+        '',
+    );
+    const [showModal, setShowModal] = useState(false);
+
+    const handleCapture = (imageSrc: string) => {
+        setCapturedImage(imageSrc);
+        setShowModal(true);
+    };
+    return (
+        <div className="grid h-screen grid-cols-[auto_1fr]">
+            <SideBar />
+            <section className="flex h-full w-full flex-col items-center justify-center">
+                <div className="flex w-fit flex-col items-start gap-5">
+                    <header className="flex flex-col items-start pl-4">
+                        <h1 className="text-titulo-pagina text-azul-base self-start font-bold">
+                            Bater Ponto
+                        </h1>
+                        <h2 className="text-subtitulo text-corpo-de-texto font-semibold">
+                            Registre o ponto no sistema
+                        </h2>
+                    </header>
+                    <main className="">
+                        <Card>
+                            <WebcamComponent onCapture={handleCapture} />
+                            <div className="flex w-full flex-col justify-between p-3">
+                                <div className="flex flex-col gap-4">
+                                    <h2 className="text-subtitulo text-azul-base font-bold">
+                                        Terça-Feira
+                                    </h2>
+
+                                    <h1 className="text-azul-base text-6xl font-bold">
+                                        12:32
+                                        <span className="text-subtitulo text-corpo-de-texto font-semibold">
+                                            32
+                                        </span>
+                                    </h1>
+                                    <p className="text-azul-base text-subtitulo font-semibold">
+                                        21/02/2026
+                                    </p>
+                                    <p className="text-corpo-de-texto">
+                                        A data e hora serão registrados no
+                                        sistema ao realizar a marcação.
+                                    </p>
+                                    <Switch
+                                        // onClick={}
+                                        label="Tirar foto para bater ponto"
+                                    ></Switch>
+                                </div>
+                                <div className="flex flex-col gap-6">
+                                    <Button
+                                        className="items-center"
+                                        icon={true}
+                                        buttonSize="large"
+                                        // onClick={capturePhoto}
+                                    >
+                                        Registrar Ponto
+                                    </Button>
+                                </div>
+                            </div>
+                        </Card>
+                    </main>
+                </div>
+                <Modal
+                    openModal={showModal}
+                    closeModal={() => setShowModal(false)}
+                >
+                    <section className="grid-cols[1fr_1fr] grid">
+                        <h1 className="text-titulo-modal text-azul-base font-bold">
+                            Prévia da Marcação
+                        </h1>
+
+                        {capturedImage && (
+                            <Image
+                                src={capturedImage}
+                                width={300}
+                                height={300}
+                                className="rounded-md object-cover"
+                                alt="Foto capturada da Webcam"
+                            ></Image>
+                        )}
+                    </section>
+                </Modal>
+            </section>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+    );
 }

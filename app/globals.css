@@ -1,26 +1,68 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --background: #f9fafa;
+    --foreground: #171717;
+    --color-azul-base: #3379bc;
+    --color-azul-hover: #40a5dd;
+    --color-azul-leve: #c8e5f4;
+    --color-background: #ffffff;
+    --color-background-2: #f9fafa;
+    --color-outline: #ebedee;
+    --color-trancado-ou-explicativo: #c8c8c8;
+    --color-texto-placeholder: #afafaf;
+    --color-titulo-de-campo: #9b9b9b;
+    --color-corpo-de-texto: #7a7a7a;
+    --color-tooltip: #525252;
+    --color-texto-destaque: #000000;
+    --color-disabled: #ebeded;
+    --color-disabled-border: #d0d0d0;
+    --font-open-sans: open-sans;
+    --font-open-mono: open-mono;
+    --text-titulo-pagina: 35px;
+    --text-titulo-modal: 20px;
+    --text-subtitulo: 16px;
+    --text-titulo-campo-texto: 10px;
+    --text-interior-campo-texto: 14;
+    --text-botao: 14px;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+    --color-foreground: var(--foreground);
+    --color-azul-base: var(--color-azul-base);
+    --color-azul-hover: var(--color-azul-hover);
+    --color-azul-leve: var(--color-azul-leve);
+    --color-background: var(--color-background);
+    --color-background-2: var(--color-background-2);
+    --color-outline: var(--color-outline);
+    --color-trancado-ou-explicativo: var(--color-trancado-ou-explicativo);
+    --color-texto-placeholder: var(--color-texto-placeholder);
+    --color-titulo-de-campo: var(--color-titulo-de-campo);
+    --color-corpo-de-texto: var(--color-corpo-de-texto);
+    --color-tooltip: var(--color-tooltip);
+    --color-texto-destaque: var(--color-texto-destaque);
+    --color-disabled: var(--color-disabled);
+    --color-disabled-border: var(--color-disabled-border);
+    --font-sans: var(--font-open-sans);
+    --font-mono: var(--font-open-mono);
+    --color-azulBase: var(--color-azulBase);
+    --text-titulo-pagina: var(--text-titulo-pagina);
+    --text-titulo-modal: var(--text-titulo-modal);
+    --text-subtitulo: var(--text-subtitulo);
+    --text-titulo-campo-texto: var(--text-titulo-campo-texto);
+    --text-interior-campo-texto: var(--text-interior-campo-texto);
+    --text-botao: var(--text-botao);
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+    :root {
+        --background: #0a0a0a;
+        --foreground: #ededed;
+    }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: 'Open Sans', serif;
 }

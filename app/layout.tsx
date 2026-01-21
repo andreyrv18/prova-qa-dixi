@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import { Open_Sans, Geist_Mono } from 'next/font/google';
 import './globals.css';
+import ModalProvider from '@/app/context/ModalProvider';
+import { ReactNode } from 'react';
+import WebcamProvider from '@/app/context/WebcamProvider';
 
 const geistSans = Open_Sans({
     variable: '--font-open-sans',
@@ -20,14 +23,16 @@ export const metadata: Metadata = {
 export default function RootLayout({
     children,
 }: Readonly<{
-    children: React.ReactNode;
+    children: ReactNode;
 }>) {
     return (
-        <html lang="pt">
+        <html lang="pt-BR">
             <body
                 className={`${geistSans.variable} ${geistMono.variable} antialiased`}
             >
-                {children}
+                <WebcamProvider>
+                    <ModalProvider>{children}</ModalProvider>
+                </WebcamProvider>
             </body>
         </html>
     );

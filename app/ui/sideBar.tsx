@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/dist/client/link';
-import Logo from '@/app/ui/Logo';
+import Logo from '@/app/ui/logo';
 import { Hr } from '@/app/ui/hr';
 import { MdDescription } from 'react-icons/md';
 import Image from 'next/image';

@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     label: string;
@@ -19,10 +19,14 @@ export function Input({
     const hasError: boolean = !!error;
     const isSimulatedActive = (forceHover || forceFocus) && !hasError;
 
+    const [event, setEvent] = useState('');
+
     return (
         <div className="flex bg-transparent p-2">
             <div className="relative">
                 <input
+                    value={event}
+                    onChange={(e) => setEvent(e.target.value)}
                     {...rest}
                     readOnly={forceHover || forceFocus}
                     className={`peer border-outline placeholder-texto-placeholder focus:border-azul-base focus:outline-azul-base hover:border-azul-hover hover:outline-azul-hover rounded-md border p-2 hover:outline-1 focus:outline-1 ${

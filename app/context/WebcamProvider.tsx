@@ -9,17 +9,24 @@ import {
 
 function WebcamReducer(state: WebcamState, action: WebcamAction) {
     switch (action.type) {
-        case 'SET_IMAGE': {
-            return { ...state, capturedImage: action.payload };
+        case 'CAPTURE_SUCCES': {
+            return {
+                ...state,
+                capturedImage: action.payload,
+                mustCapture: false,
+            };
         }
         case 'CLEAR_IMAGE': {
             return { ...state, capturedImage: '' };
         }
         case 'DEACTIVATE': {
-            return { ...state, deactivatedWebcam: false };
+            return { ...state, deactivatedWebcam: !state.deactivatedWebcam };
         }
         case 'OPEN_WEBCAM': {
             return { ...state, isWebcamOpen: !state.isWebcamOpen };
+        }
+        case 'CAPTURE_TRIGGER': {
+            return { ...state, mustCapture: true, capturedImage: '' };
         }
         default: {
             throw new Error('Ação desconhecida');
@@ -29,7 +36,8 @@ function WebcamReducer(state: WebcamState, action: WebcamAction) {
 const initalState: WebcamState = {
     capturedImage: '',
     deactivatedWebcam: false,
-    isWebcamOpen: false,
+    isWebcamOpen: true,
+    mustCapture: false,
 };
 
 export default function WebcamProvider({ children }: { children: ReactNode }) {

@@ -5,10 +5,12 @@ export interface WebcamState {
     capturedImage: string | StaticImport;
     deactivatedWebcam: boolean;
     isWebcamOpen: boolean;
+    mustCapture: boolean;
 }
 
 export type WebcamAction =
-    | { type: 'SET_IMAGE'; payload: string }
+    | { type: 'CAPTURE_SUCCES'; payload: string }
+    | { type: 'CAPTURE_TRIGGER' }
     | { type: 'CLEAR_IMAGE' }
     | { type: 'DEACTIVATE' }
     | { type: 'OPEN_WEBCAM' };

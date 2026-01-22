@@ -7,6 +7,8 @@ import Modal from '@/app/ui/modal';
 import { useContext } from 'react';
 import Image from 'next/image';
 import { Button } from '@/app/ui/button';
+import { TbClockPlus } from 'react-icons/tb';
+
 import {
     WebcamContext,
     WebcamDispatchContext,
@@ -19,6 +21,12 @@ export default function Home() {
     const webcamDispatch = useContext(WebcamDispatchContext);
     const modalState = useContext(ModalContext);
     const modalDispatch = useContext(ModalDispatchContext);
+
+    const handleRegistrarFoto = () => {
+        webcamDispatch?.({ type: 'CAPTURE_TRIGGER' });
+
+        modalDispatch?.({ type: 'OPEN_MODAL' });
+    };
     return (
         <div className="bg-background grid h-screen grid-cols-[auto_1fr]">
             <SideBar />
@@ -37,6 +45,10 @@ export default function Home() {
                             <WebcamComponent />
                             <div className="flex w-full flex-col justify-between p-3">
                                 <Relogio>
+                                    <p className="text-corpo-de-texto">
+                                        A data e hora serão registrados no
+                                        sistema ao realizar a marcação.
+                                    </p>
                                     <Switch
                                         label="Tirar foto para bater ponto"
                                         onChange={() => {
@@ -44,21 +56,17 @@ export default function Home() {
                                                 type: 'OPEN_WEBCAM',
                                             });
                                         }}
-                                        checked={
-                                            webcamState?.isWebcamOpen ?? false
-                                        }
+                                        checked={webcamState?.isWebcamOpen}
                                     ></Switch>
                                 </Relogio>
                                 <div className="flex flex-col gap-6">
                                     <Button
                                         className="items-center"
-                                        icon={true}
-                                        buttonSize="large"
-                                        onClick={() =>
-                                            modalDispatch?.({
-                                                type: 'OPEN_MODAL',
-                                            })
+                                        icon={
+                                            <TbClockPlus className="rotate-x-180 transform" />
                                         }
+                                        buttonSize="large"
+                                        onClick={handleRegistrarFoto}
                                     >
                                         Registrar Ponto
                                     </Button>
@@ -79,18 +87,6 @@ export default function Home() {
                         <h1 className="text-titulo-modal text-azul-base font-bold">
                             Prévia da Marcação
                         </h1>
-
-                        {webcamState?.capturedImage ? (
-                            <Image
-                                src={webcamState.capturedImage}
-                                width={300}
-                                height={300}
-                                className="rounded-md object-cover"
-                                alt="Foto capturada da Webcam"
-                            ></Image>
-                        ) : (
-                            <p>Sem Foto</p>
-                        )}
                     </section>
                 </Modal>
             </section>

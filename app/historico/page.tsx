@@ -3,6 +3,7 @@ import Card from '@/app/ui/card';
 import { Input } from '@/app/ui/input';
 import { Button } from '@/app/ui/button';
 import { Hr } from '@/app/ui/hr';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function Historico() {
     return (
@@ -25,14 +26,20 @@ export default function Historico() {
                                 <div className="flex flex-row items-center justify-center">
                                     <Input label="Data Inicial"></Input>
 
-                                    <Input label="Data Final"></Input>
+                                    <Input
+                                        id={uuidv4()}
+                                        label="Data Final"
+                                        placeholder="00/00/00"
+                                        name="vazio neutro"
+                                        type="date"
+                                    ></Input>
                                     <Button buttonSize="large" icon={true}>
                                         Pesquisar
                                     </Button>
                                 </div>
-                                <div className="flex flex-row items-center justify-center">
-                                    <p>d</p>
-                                    <p>t</p>
+                                <div className="flex flex-row items-center justify-start gap-8">
+                                    <p className="text-azul-base">data</p>
+                                    <p className="text-azul-base">marcaçoes</p>
                                 </div>
                             </div>
                             <Hr />

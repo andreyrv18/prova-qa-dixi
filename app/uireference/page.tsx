@@ -7,6 +7,7 @@ import Th from '@/app/ui/th';
 import Td from '@/app/ui/td';
 import Switch from '@/app/ui/switch';
 import SideBar from '@/app/ui/sideBar';
+import { FaPlus } from 'react-icons/fa';
 
 export default function Page() {
     type StringRecord = Record<string, string>;
@@ -26,6 +27,7 @@ export default function Page() {
         Tooltip: '#525252',
         'Texto Destaque': '#000000',
     };
+    const faPlus = <FaPlus />;
 
     return (
         <div className="grid grid-cols-[auto_1fr]">
@@ -391,19 +393,25 @@ export default function Page() {
                                             Neutro
                                         </td>
                                         <Td middleCell={true}>
-                                            <Button buttonSize="pequeno">
+                                            <Button
+                                                icon={false}
+                                                buttonSize="pequeno"
+                                            >
                                                 Texto botão
                                             </Button>
                                         </Td>
                                         <Td middleCell={true}>
-                                            <Button buttonSize="medio">
+                                            <Button
+                                                icon={false}
+                                                buttonSize="medio"
+                                            >
                                                 Texto botão
                                             </Button>
                                         </Td>
                                         <Td>
                                             <Button
                                                 buttonSize="medio"
-                                                icon={true}
+                                                icon={faPlus}
                                             >
                                                 Texto botão
                                             </Button>
@@ -417,6 +425,7 @@ export default function Page() {
                                         </td>
                                         <Td middleCell={true}>
                                             <Button
+                                                icon={false}
                                                 buttonSize="pequeno"
                                                 forceHover={true}
                                             >
@@ -425,6 +434,7 @@ export default function Page() {
                                         </Td>
                                         <Td middleCell={true}>
                                             <Button
+                                                icon={false}
                                                 buttonSize="medio"
                                                 forceHover={true}
                                             >
@@ -434,7 +444,7 @@ export default function Page() {
                                         <Td>
                                             <Button
                                                 buttonSize="medio"
-                                                icon={true}
+                                                icon={faPlus}
                                                 forceHover={true}
                                             >
                                                 Texto botão
@@ -448,6 +458,7 @@ export default function Page() {
                                         </td>
                                         <Td middleCell={true}>
                                             <Button
+                                                icon={false}
                                                 buttonSize="pequeno"
                                                 forceActive={true}
                                             >
@@ -456,6 +467,7 @@ export default function Page() {
                                         </Td>
                                         <Td middleCell={true}>
                                             <Button
+                                                icon={false}
                                                 buttonSize="medio"
                                                 forceActive={true}
                                             >
@@ -466,7 +478,7 @@ export default function Page() {
                                             <Button
                                                 buttonSize="medio"
                                                 forceActive={true}
-                                                icon={true}
+                                                icon={faPlus}
                                             >
                                                 Texto botão
                                             </Button>
@@ -482,6 +494,7 @@ export default function Page() {
                                         </td>
                                         <Td middleCell={true}>
                                             <Button
+                                                icon={false}
                                                 buttonSize="pequeno"
                                                 forceTranparent={true}
                                             >
@@ -489,14 +502,17 @@ export default function Page() {
                                             </Button>
                                         </Td>
                                         <Td middleCell={true}>
-                                            <Button buttonSize="medio">
+                                            <Button
+                                                icon={false}
+                                                buttonSize="medio"
+                                            >
                                                 Texto botão
                                             </Button>
                                         </Td>
                                         <Td>
                                             <Button
                                                 buttonSize="medio"
-                                                icon={true}
+                                                icon={faPlus}
                                             >
                                                 Texto botão
                                             </Button>
@@ -510,6 +526,7 @@ export default function Page() {
                                         </td>
                                         <Td middleCell={true}>
                                             <Button
+                                                icon={false}
                                                 buttonSize="pequeno"
                                                 forceTranparent={true}
                                             >
@@ -518,6 +535,7 @@ export default function Page() {
                                         </Td>
                                         <Td middleCell={true}>
                                             <Button
+                                                icon={false}
                                                 buttonSize="medio"
                                                 forceHoverFill={true}
                                             >
@@ -528,7 +546,7 @@ export default function Page() {
                                             <Button
                                                 buttonSize="medio"
                                                 forceHoverFill={true}
-                                                icon={true}
+                                                icon={faPlus}
                                             >
                                                 Texto botão
                                             </Button>
@@ -541,6 +559,7 @@ export default function Page() {
                                         </td>
                                         <Td middleCell={true}>
                                             <Button
+                                                icon={false}
                                                 buttonSize="pequeno"
                                                 forceTranparent={true}
                                             >
@@ -549,6 +568,7 @@ export default function Page() {
                                         </Td>
                                         <Td middleCell={true}>
                                             <Button
+                                                icon={false}
                                                 buttonSize="medio"
                                                 forceActive={true}
                                             >
@@ -559,7 +579,7 @@ export default function Page() {
                                             <Button
                                                 buttonSize="medio"
                                                 forceActive={true}
-                                                icon={true}
+                                                icon={faPlus}
                                             >
                                                 Texto botão
                                             </Button>

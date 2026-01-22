@@ -17,10 +17,7 @@ export default function Relogio({ children }: { children: ReactNode }) {
                 <p className="text-azul-base text-subtitulo font-semibold">
                     21/02/2026
                 </p>
-                <p className="text-corpo-de-texto">
-                    A data e hora serão registrados no sistema ao realizar a
-                    marcação.
-                </p>
+
                 {children}
             </div>
         </>

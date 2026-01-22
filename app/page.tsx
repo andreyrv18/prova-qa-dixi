@@ -5,7 +5,6 @@ import Card from '@/app/ui/card';
 import Switch from '@/app/ui/switch';
 import Modal from '@/app/ui/modal';
 import { useContext } from 'react';
-import Image from 'next/image';
 import { Button } from '@/app/ui/button';
 import { TbClockPlus } from 'react-icons/tb';
 

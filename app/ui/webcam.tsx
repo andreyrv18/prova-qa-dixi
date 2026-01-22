@@ -1,5 +1,5 @@
 'use client';
-import React, { useCallback, useContext, useRef } from 'react';
+import React, { useCallback, useContext, useEffect, useRef } from 'react';
 import Webcam from 'react-webcam';
 import {
     WebcamContext,
@@ -10,11 +10,11 @@ import ViewFinder from '@/app/ui/viewFinder';
 const videoConstraints = {
     width: 360,
     height: 360,
-    facingMode: 'environment',
+    facingMode: 'user',
 };
 
 export default function WebcamComponent() {
-    const dispatch = useContext(WebcamDispatchContext);
+    const webcamDispatch = useContext(WebcamDispatchContext);
     const webcamState = useContext(WebcamContext);
     const webcamRef = useRef<Webcam>(null);
 
@@ -22,10 +22,16 @@ export default function WebcamComponent() {
         if (webcamRef.current) {
             const imageSrc: string | null = webcamRef.current.getScreenshot();
             if (imageSrc) {
-                dispatch?.({ type: 'SET_IMAGE', payload: imageSrc });
+                webcamDispatch?.({ type: 'CAPTURE_SUCCES', payload: imageSrc });
             }
         }
-    }, [webcamRef, dispatch]);
+    }, [webcamRef, webcamDispatch]);
+
+    useEffect(() => {
+        if (webcamState?.mustCapture === true && webcamState.isWebcamOpen) {
+            capturePhoto();
+        }
+    }, [webcamState?.mustCapture, webcamState?.isWebcamOpen, capturePhoto]);
 
     if (!webcamState?.isWebcamOpen) {
         return (

@@ -6,7 +6,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     label?: string;
 }
 
-export default function Switch({ label, className, ...props }: InputProps) {
+export default function Switch({ label,  ...props }: InputProps) {
     const id = useId();
     return (
         <label

@@ -35,7 +35,8 @@ export default function WebcamComponent() {
 
     if (!webcamState?.isWebcamOpen) {
         return (
-            <div className="bg-background-2 text-corpo-de-texto text-interior-campo-texto flex h-[620] w-[620] items-center justify-center overflow-hidden rounded-2xl font-semibold">
+            <div className="bg-background-2 text-corpo-de-texto text-interior-campo-texto flex h-full w-full items-center justify-center rounded-l-2xl font-semibold">
+                {' '}
                 Foto desabilitada
             </div>
         );
@@ -43,9 +44,9 @@ export default function WebcamComponent() {
 
     return (
         <>
-            <div className="relative flex h-[620] w-[620] items-center justify-center">
+            <div className="relative flex h-full w-full overflow-hidden items-center justify-center">
                 <Webcam
-                    className={`${webcamState?.deactivatedWebcam ? 'hidden' : ''} rounded-l-xl`}
+                    className={`${webcamState?.deactivatedWebcam ? 'hidden' : ''} rounded-l-2xl object-cover`}
                     ref={webcamRef}
                     audio={false}
                     height={620}

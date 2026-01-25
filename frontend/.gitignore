@@ -1,0 +1,33 @@
+.DS_Store
+*.pem
+*.swp
+.vscode/
+.idea/
+
+frontend/node_modules/
+frontend/.pnp
+frontend/.pnp.*
+frontend/.yarn/*
+!frontend/.yarn/patches
+!frontend/.yarn/plugins
+!frontend/.yarn/releases
+!frontend/.yarn/versions
+
+frontend/coverage/
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/*.tsbuildinfo
+frontend/next-env.d.ts
+
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/.pnpm-debug.log*
+frontend/.vercel
+
+
+# --- ENV FILES (Shared/Specific) ---
+# Ignora arquivos de ambiente em qualquer subpasta por segurança
+.env*
+frontend/.env*

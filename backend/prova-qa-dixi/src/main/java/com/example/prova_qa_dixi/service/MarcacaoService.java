@@ -12,8 +12,9 @@ public class MarcacaoService {
     private MarcacaoRepository marcacaoRepository;
 
     public Marcacao marcacaoService(Marcacao marcacao) {
-        System.out.println(marcacao);
-      return   marcacaoRepository.save(marcacao);
+//        System.out.println(marcacao);
+//        saved = marcacaoRepository.save(marcacao);
+        return marcacaoRepository.save(marcacao);
 
     }
 }

@@ -1,10 +1,31 @@
-import { ReactNode, useEffect, useRef, useState } from 'react';
+import { ReactNode, useContext, useEffect, useRef, useState } from 'react';
 import { GetServerTime } from '@/app/services/fetchAPI';
+import {
+    RelogioContext,
+    RelogioDispatchContext,
+} from '@/app/context/RelogioContext';
+import handleTime from '@/app/utils/handleTime';
 
-export default function Relogio({ children }: { children: ReactNode }) {
-    const [horaMostrada, setHoraMostrada] = useState<Date | null>(null);
+interface RelogioProps {
+    children?: ReactNode;
+    horaEstatica?: Date | null;
+}
+
+export default function Relogio({ children, horaEstatica }: RelogioProps) {
+    const [horaMostrada, setHoraMostrada] = useState<Date | null>(
+        horaEstatica || null,
+    );
     const intevaloRef = useRef<NodeJS.Timeout | null>(null);
+
+    const relogioState = useContext(RelogioContext);
+    const relogioDispatch = useContext(RelogioDispatchContext);
+
     useEffect(() => {
+        if (horaEstatica) {
+            setHoraMostrada(horaMostrada);
+            return;
+        }
+
         const sincronizar = async () => {
             const inicio = performance.now();
 
@@ -33,46 +54,27 @@ export default function Relogio({ children }: { children: ReactNode }) {
         };
 
         sincronizar();
+
         return () => {
             if (intevaloRef.current) clearInterval(intevaloRef.current);
         };
-    }, []);
+    }, [horaEstatica]);
+
+    useEffect(() => {
+        if (!horaEstatica && horaMostrada && relogioState?.isTimeSaved) {
+            relogioDispatch?.({ type: 'HORA_MOSTRADA', payload: horaMostrada });
+        }
+    }, [
+        horaEstatica,
+        horaMostrada,
+        relogioState?.isTimeSaved,
+        relogioDispatch,
+    ]);
 
     if (!horaMostrada) return <p className="text-azul-base">Carregando...</p>;
 
-    const opcoesTempo: Intl.DateTimeFormatOptions = {
-        timeZone: 'America/Sao_Paulo',
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: false,
-    };
-
-    const opcoesSegundo: Intl.DateTimeFormatOptions = {
-        timeZone: 'America/Sao_Paulo',
-        second: '2-digit',
-    };
-
-    const opcoesDiaDaSemana: Intl.DateTimeFormatOptions = {
-        timeZone: 'America/Sao_Paulo',
-        weekday: 'long',
-    };
-
-    const opcoesDataNum: Intl.DateTimeFormatOptions = {
-        timeZone: 'America/Sao_Paulo',
-    };
-
-    const diaDaSemana = horaMostrada.toLocaleDateString(
-        'pt-BR',
-        opcoesDiaDaSemana,
-    );
-    const horas = horaMostrada.toLocaleTimeString('pt-BR', opcoesTempo);
-    const segundos = horaMostrada
-        .toLocaleTimeString('pt-BR', opcoesSegundo)
-        .padStart(2, '0');
-    const dataFormatada = horaMostrada.toLocaleDateString(
-        'pt-BR',
-        opcoesDataNum,
-    );
+    const { diaDaSemana, horas, segundos, dataFormatada } =
+        handleTime(horaMostrada)!;
 
     return (
         <>

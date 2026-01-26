@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/../bemcuidar" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../dixi_prova_qa" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../omini-ordena-fila" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+  </component>
+</project>

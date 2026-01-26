@@ -16,7 +16,7 @@ public class Marcacao {
     private Long id;
 
     private Date dataMarcacao;
-    private String imagemSrc;
+    private String imagemUrl;
     private String status;
 
     public Long getId() {
@@ -35,12 +35,12 @@ public class Marcacao {
         this.dataMarcacao = dataMarcacao;
     }
 
-    public String getImagemSrc() {
-        return imagemSrc;
+    public String getImagemUrl() {
+        return imagemUrl;
     }
 
-    public void setImagemSrc(String imagemSrc) {
-        this.imagemSrc = imagemSrc;
+    public void setImagemUrl(String imagemUrl) {
+        this.imagemUrl = imagemUrl;
     }
 
     public String getStatus() {

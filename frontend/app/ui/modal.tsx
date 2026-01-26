@@ -5,6 +5,8 @@ import { Button } from '@/app/ui/button';
 import Relogio from '@/app/ui/relogio';
 import { WebcamContext } from '@/app/context/WebcamContext';
 import Image from 'next/image';
+import { PostMarcacoes } from '@/app/services/fetchAPI';
+import { RelogioContext } from '@/app/context/RelogioContext';
 
 interface ModalProps {
     children: ReactNode;
@@ -19,7 +21,7 @@ export default function Modal({
 }: ModalProps) {
     const webcamState = useContext(WebcamContext);
     const ref = useRef<HTMLDialogElement>(null);
-
+    const relogioState = useContext(RelogioContext);
     useEffect(() => {
         if (!ref.current) return;
 
@@ -40,6 +42,21 @@ export default function Modal({
         : 'h-[348px] w-[402px]';
 
     const colunasDoGrid = !isWebcamDeactivated ? 'grid-cols-1' : 'grid-cols-2';
+
+    const horaDoContexto = relogioState?.horaMostrada || null;
+
+    const payload = {
+        imageSrc,
+        'data marcacao': horaDoContexto,
+    };
+
+    const sendMarcacoes = async () => {
+        const result = await PostMarcacoes(payload);
+        if (result.status === 202) {
+            console.log(result);
+        }
+    };
+
     return (
         <>
             <dialog
@@ -89,7 +106,7 @@ export default function Modal({
                         <span className="mb-4"></span>
 
                         <div className="text-center">
-                            <Relogio>
+                            <Relogio horaEstatica={horaDoContexto}>
                                 <p className="text-corpo-de-texto">
                                     Você deseja Registrar Esse ponto?
                                 </p>
@@ -99,6 +116,7 @@ export default function Modal({
                             <Button
                                 buttonSize={''}
                                 icon={false}
+                                onClick={sendMarcacoes}
                                 className="flex self-end"
                             >
                                 Registrar Ponto

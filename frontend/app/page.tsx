@@ -7,24 +7,32 @@ import Modal from '@/app/ui/modal';
 import { useContext } from 'react';
 import { Button } from '@/app/ui/button';
 import { TbClockPlus } from 'react-icons/tb';
-
 import {
     WebcamContext,
     WebcamDispatchContext,
 } from '@/app/context/WebcamContext';
 import { ModalContext, ModalDispatchContext } from '@/app/context/ModalContext';
 import Relogio from '@/app/ui/relogio';
+import { RelogioDispatchContext } from '@/app/context/RelogioContext';
 
 export default function Home() {
     const webcamState = useContext(WebcamContext);
     const webcamDispatch = useContext(WebcamDispatchContext);
     const modalState = useContext(ModalContext);
     const modalDispatch = useContext(ModalDispatchContext);
+    const relogioDispatch = useContext(RelogioDispatchContext);
 
     const handleRegistrarFoto = () => {
         webcamDispatch?.({ type: 'CAPTURE_TRIGGER' });
-
+        relogioDispatch?.({ type: 'SAVE_TIME' });
         modalDispatch?.({ type: 'OPEN_MODAL' });
+    };
+
+    const handleCloseModal = () => {
+        modalDispatch?.({
+            type: 'CLOSE_MODAL',
+        });
+        relogioDispatch?.({ type: 'SAVE_TIME' });
     };
     return (
         <div className="bg-background grid h-screen grid-cols-[auto_1fr]">
@@ -76,11 +84,7 @@ export default function Home() {
                 </div>
                 <Modal
                     isModalOpen={modalState?.isModalOpen ?? false}
-                    onModalClose={() =>
-                        modalDispatch?.({
-                            type: 'CLOSE_MODAL',
-                        })
-                    }
+                    onModalClose={handleCloseModal}
                 >
                     <section className="grid-cols[1fr_1fr] grid">
                         <h1 className="text-titulo-modal text-azul-base font-bold">

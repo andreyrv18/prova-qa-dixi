@@ -4,6 +4,7 @@ import './globals.css';
 import ModalProvider from '@/app/context/ModalProvider';
 import { ReactNode } from 'react';
 import WebcamProvider from '@/app/context/WebcamProvider';
+import RelogioProvider from '@/app/context/RelogioProvider';
 
 const geistSans = Open_Sans({
     variable: '--font-open-sans',
@@ -31,7 +32,9 @@ export default function RootLayout({
                 className={`${geistSans.variable} ${geistMono.variable} antialiased`}
             >
                 <WebcamProvider>
-                    <ModalProvider>{children}</ModalProvider>
+                    <ModalProvider>
+                        <RelogioProvider>{children}</RelogioProvider>
+                    </ModalProvider>
                 </WebcamProvider>
             </body>
         </html>

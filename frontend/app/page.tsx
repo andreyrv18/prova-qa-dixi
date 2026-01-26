@@ -39,7 +39,7 @@ export default function Home() {
                             Registre o ponto no sistema
                         </h2>
                     </header>
-                    <main >
+                    <main>
                         <Card>
                             <WebcamComponent />
                             <div className="flex w-full flex-col justify-between p-3">

@@ -14,10 +14,15 @@ export const PostMarcacoes = async (payload: object) => {
     const response = await fetch(URL, {
         method: 'POST',
         headers: {
-            contentType: CONTENT,
+            'Content-Type': CONTENT,
         },
         body: JSON.stringify(payload),
     });
+
+    if (!response.ok) {
+        console.error('Erro ao Salvar marcacao', response.status);
+        return { status: response.status, data: null };
+    }
 
     const { status } = response;
     const data = await response.json();

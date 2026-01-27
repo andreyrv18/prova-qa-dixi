@@ -7,7 +7,8 @@ export interface RelogioState {
 
 export type RelogioAction =
     | { type: 'SAVE_TIME' }
-    | { type: 'HORA_MOSTRADA'; payload: Date };
+    | { type: 'HORA_MOSTRADA'; payload: Date }
+    | { type: 'RESET_TIME' };
 
 export const RelogioContext = createContext<RelogioState | null>(null);
 export const RelogioDispatchContext =

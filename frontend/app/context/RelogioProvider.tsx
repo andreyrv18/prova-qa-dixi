@@ -15,6 +15,9 @@ function RelogioReducer(state: RelogioState, action: RelogioAction) {
         case 'HORA_MOSTRADA': {
             return { ...state, horaMostrada: action.payload };
         }
+        case 'RESET_TIME': {
+            return { isTimeSaved: false, horaMostrada: null };
+        }
 
         default: {
             return state;

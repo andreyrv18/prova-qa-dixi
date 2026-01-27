@@ -10,7 +10,7 @@ import ViewFinder from '@/app/ui/viewFinder';
 const videoConstraints = {
     width: 360,
     height: 360,
-    facingMode: 'user',
+    // facingMode: 'user',
 };
 
 export default function WebcamComponent() {
@@ -44,7 +44,7 @@ export default function WebcamComponent() {
 
     return (
         <>
-            <div className="relative flex h-full w-full overflow-hidden items-center justify-center">
+            <div className="relative flex h-full w-full items-center justify-center overflow-hidden">
                 <Webcam
                     className={`${webcamState?.deactivatedWebcam ? 'hidden' : ''} rounded-l-2xl object-cover`}
                     ref={webcamRef}

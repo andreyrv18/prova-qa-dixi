@@ -5,6 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface MarcacaoRepository extends CrudRepository<Marcacao, Long> {
 
-    Marcacao findAllById(Long id);
+    Marcacao findTopByStatusOrderByDataMarcacaoDesc(String status);
 }
-

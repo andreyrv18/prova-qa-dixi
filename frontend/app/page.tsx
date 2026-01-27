@@ -32,7 +32,7 @@ export default function Home() {
         modalDispatch?.({
             type: 'CLOSE_MODAL',
         });
-        relogioDispatch?.({ type: 'SAVE_TIME' });
+        relogioDispatch?.({ type: 'RESET_TIME' });
     };
     return (
         <div className="bg-background grid h-screen grid-cols-[auto_1fr]">

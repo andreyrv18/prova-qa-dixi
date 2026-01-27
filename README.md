@@ -43,6 +43,7 @@
 
 ### Java
 [Converting-Base-encoded-String-Image](https://coderanch.com/t/482256/java/Converting-Base-encoded-String-Image)
+
 [Escrever arquivos em Java - dev.java](https://dev.java/learn/modernio/#writing-text-files)
 
 ### Relógio monotônico

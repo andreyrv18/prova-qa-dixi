@@ -4,8 +4,12 @@ import { Input } from '@/app/ui/input';
 import { Button } from '@/app/ui/button';
 import { Hr } from '@/app/ui/hr';
 import { v4 as uuidv4 } from 'uuid';
+import { GetMarcacoes } from '@/app/services/fetchAPI';
+import { formatarData } from '@/app/utils/handleTime';
 
-export default function Historico() {
+export default async function Historico() {
+    const dadosMarcao = await GetMarcacoes();
+
     return (
         <section className="grid h-screen grid-cols-[auto_1fr]">
             <SideBar />
@@ -21,7 +25,6 @@ export default function Historico() {
                     </header>
                     <main>
                         <Card>
-                            <div>tes</div>
                             <div className="flex flex-col justify-center gap-2">
                                 <div className="flex flex-row items-center justify-center">
                                     <Input label="Data Inicial"></Input>
@@ -37,12 +40,28 @@ export default function Historico() {
                                         Pesquisar
                                     </Button>
                                 </div>
-                                <div className="flex flex-row items-center justify-start gap-8">
-                                    <p className="text-azul-base">data</p>
-                                    <p className="text-azul-base">marcaçoes</p>
+                                <div className="flex max-h-[400px] w-full flex-col items-center justify-start gap-8 overflow-y-scroll pr-2">
+                                    <div className="flex flex-row items-center justify-start gap-2">
+                                        {dadosMarcao.map((item) => (
+                                            <div key={item.id}>
+                                                <span>
+                                                    {item.status ===
+                                                    'considerado' ? (
+                                                        <span>
+                                                            {formatarData(
+                                                                item.dataMarcacao,
+                                                            )}
+                                                        </span>
+                                                    ) : (
+                                                        <p>{''}</p>
+                                                    )}
+                                                </span>
+                                                <Hr />
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
-                            <Hr />
                         </Card>
                     </main>
                 </div>

@@ -5,6 +5,7 @@ import {
     RelogioDispatchContext,
 } from '@/app/context/RelogioContext';
 import handleTime from '@/app/utils/handleTime';
+import RelogioSkeleton from '@/app/ui/relogioSkeleton';
 
 interface RelogioProps {
     children?: ReactNode;
@@ -71,7 +72,7 @@ export default function Relogio({ children, horaEstatica }: RelogioProps) {
         relogioDispatch,
     ]);
 
-    if (!horaMostrada) return <p className="text-azul-base">Carregando...</p>;
+    if (!horaMostrada) return <RelogioSkeleton />;
 
     const { diaDaSemana, horas, segundos, dataFormatada } =
         handleTime(horaMostrada)!;

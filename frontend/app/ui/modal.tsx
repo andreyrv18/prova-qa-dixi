@@ -46,8 +46,8 @@ export default function Modal({
     const horaDoContexto = relogioState?.horaMostrada || null;
 
     const payload = {
-        imageSrc,
-        'data marcacao': horaDoContexto,
+        imagemUrl: imageSrc,
+        dataMarcacao: horaDoContexto,
     };
 
     const sendMarcacoes = async () => {

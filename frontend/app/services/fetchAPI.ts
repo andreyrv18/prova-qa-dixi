@@ -1,10 +1,22 @@
 const CONTENT = 'application/json';
 
-export const fetchAPI = async () => {
-    const URL = 'http://localhost:8080/';
+interface Marcacoes {
+    dataMarcacao: Date;
+    id: number;
+    imagemUrl: string;
+    status: string;
+}
 
-    const response = await fetch(URL);
+export const GetMarcacoes = async (): Promise<Marcacoes[]> => {
+    const URL = 'http://localhost:8080/all';
 
+    const response = await fetch(URL, {
+        method: 'GET',
+    });
+
+    if (!response.ok) {
+        return [];
+    }
     return await response.json();
 };
 

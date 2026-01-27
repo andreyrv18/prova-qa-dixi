@@ -39,3 +39,10 @@ export default function handleTime(horaMostrada: Date) {
 
     return { diaDaSemana, horas, segundos, dataFormatada };
 }
+
+export const formatarData = (dataIso: Date) => {
+    return new Date(dataIso).toLocaleString('pt-BR', {
+        hour: '2-digit',
+        minute: '2-digit',
+    });
+};
